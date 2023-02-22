@@ -3,14 +3,18 @@ import '../page.scss'
 const IndividualCaetegory = ({catergory,child}) => {
   return(
    <>
-    <div>
-    <div className={`categorija_indiv ${child&&'categorija_indiv_child'}`}>
-      <span>{catergory.name}</span>
-      <button>Pievienot apakškategoriju</button>
-    </div>
-    {catergory.child && catergory.child.map(val => (
-      <IndividualCaetegory catergory={val} child={true}/>
-    ))}
+    <div className='categorija_indiv_outer'>
+      <div className='categorija_indiv_prime'>
+        <div className={`categorija_indiv`}>
+          <span>{catergory.name}</span>
+          <button>Pievienot apakškategoriju</button>
+        </div>
+      </div>
+      <div className='categorija_indiv_child'>
+        {catergory.child && catergory.child.map(val => (
+          <IndividualCaetegory catergory={val} child={true}/>
+        ))}
+      </div>
     </div>
    </>
   )
@@ -25,9 +29,55 @@ const Catalog = () => {
           child:[
             {
               name: 'Vagondēļi',
-              child:null
+              child:[
+                {
+                  name: 'pussVagondēļi',
+                  child:[
+                    {
+                      name: 'Vagondēļi',
+                      child:[
+                        {
+                          name: 'pussVagondēļi',
+                          child:[
+                            {
+                              name: 'Vagondēļi',
+                              child:[
+                                {
+                                  name: 'pussVagondēļi',
+                                  child:[
+                                    {
+                                      name: 'Vagondēļi',
+                                      child:null
+                                    }
+                                  ]
+                                },
+                                {
+                                  name: 'OSb',
+                                  child:null
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          name: 'OSb',
+                          child:null
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  name: 'OSb',
+                  child:null
+                }
+              ]
             }
           ]
+        },
+        {
+          name: 'OSb',
+          child:null
         }
       ]
     },

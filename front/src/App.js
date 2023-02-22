@@ -4,7 +4,7 @@ import Layout from './components/Layout'
 import Public from './components/Public'
 import DashLayout from './Wrapper/DashLayout'
 import { ROLES } from './config/roles'
-import { Login, Home, Catalog, Categorys, PersistLogin, Prefetch, EditUser, Welcome, RequireAuth, UsersList, NewUserForm, NotesList, EditNote, NewNote } from './pages'
+import { Login, Home, Catalog, Categorys, EditCategory, PersistLogin, Prefetch, EditUser, Welcome, RequireAuth, UsersList, NewUserForm, NotesList, EditNote, NewNote } from './pages'
 import useTitle from './hooks/useTitle';
 function App() {
   useTitle('Dan D. Repairs')
@@ -24,7 +24,10 @@ function App() {
 
                 <Route index element={<Home />} />
                 <Route path="catalog" element={<Catalog />} />
-                <Route path="categorys" element={<Categorys />} />
+                <Route path="categorys">
+                  <Route index element={<Categorys />} />
+                  <Route path=":id" element={<EditCategory />} />
+                </Route>
                 <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
                   <Route path="users">
                     <Route index element={<UsersList />} />
