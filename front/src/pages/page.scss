@@ -1,0 +1,26 @@
+.component_outer{
+    margin-top: 74px;
+    height: calc(100vh - 74px);
+    background-color: transparent;
+    padding: 15px 30px 15px 30px;
+}
+.standart_table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    th, td {
+        padding: 15px 15px 15px 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr{
+
+        transition: all .1s ease;
+        &:hover{
+            transition: all .1s ease;
+            background-color: rgb(243, 243, 243);
+        }
+    }
+}
+  
+  

@@ -1,0 +1,22 @@
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+.kreisa{float: left;}
+.laba{float: right;}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.width_100{
+  width: 100%;
+}
+.width_60{
+  width: 60%;
+}
+.m_auto{
+  margin: auto;
+}
+  

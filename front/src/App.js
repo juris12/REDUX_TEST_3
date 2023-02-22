@@ -1,21 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
+import './app.scss'
 import Layout from './components/Layout'
 import Public from './components/Public'
-import Login from './features/auth/Login';
-import DashLayout from './components/DashLayout'
-import Welcome from './features/auth/Welcome'
-import NotesList from './features/notes/NotesList'
-import UsersList from './features/users/UsersList'
-import EditUser from './features/users/EditUser'
-import NewUserForm from './features/users/NewUserForm'
-import EditNote from './features/notes/EditNote'
-import NewNote from './features/notes/NewNote'
-import Prefetch from './features/auth/Prefetch'
-import PersistLogin from './features/auth/PersistLogin'
-import RequireAuth from './features/auth/RequireAuth'
+import DashLayout from './Wrapper/DashLayout'
 import { ROLES } from './config/roles'
+import { Login, Home, Catalog, Categorys, PersistLogin, Prefetch, EditUser, Welcome, RequireAuth, UsersList, NewUserForm, NotesList, EditNote, NewNote } from './pages'
 import useTitle from './hooks/useTitle';
-
 function App() {
   useTitle('Dan D. Repairs')
 
@@ -32,8 +22,9 @@ function App() {
             <Route element={<Prefetch />}>
               <Route path="dash" element={<DashLayout />}>
 
-                <Route index element={<Welcome />} />
-
+                <Route index element={<Home />} />
+                <Route path="catalog" element={<Catalog />} />
+                <Route path="categorys" element={<Categorys />} />
                 <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
                   <Route path="users">
                     <Route index element={<UsersList />} />

@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react"
-import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
-import { ROLES } from "../../config/roles"
+import { useUpdateUserMutation,useDeleteUserMutation } from './../usersApiSlice'
+import { BsTrash } from 'react-icons/bs';
+import { BiSave } from 'react-icons/bi'
+import { ROLES } from '../../../config/roles'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const EditUserForm = ({ user }) => {
-
     const [updateUser, {
         isLoading,
         isSuccess,
@@ -101,35 +100,35 @@ const EditUserForm = ({ user }) => {
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
 
+
     const content = (
         <>
-            <p className={errClass}>{errContent}</p>
-
-            <form className="form" onSubmit={e => e.preventDefault()}>
-                <div className="form__title-row">
-                    <h2>Edit User</h2>
-                    <div className="form__action-buttons">
+            <form className="edit_form" onSubmit={e => e.preventDefault()}>
+                <p className={errClass}>{errContent}</p>
+                <div className="form__title_row">
+                    <h2>Rediģēt lietotāja {username} informāciju</h2>
+                    <div className="form_action_buttons">
                         <button
-                            className="icon-button"
+                            className="icon_button_save"
                             title="Save"
                             onClick={onSaveUserClicked}
                             disabled={!canSave}
                         >
-                            <FontAwesomeIcon icon={faSave} />
+                            <BiSave/>
                         </button>
                         <button
-                            className="icon-button"
+                            className="icon_button_delite"
                             title="Delete"
                             onClick={onDeleteUserClicked}
                         >
-                            <FontAwesomeIcon icon={faTrashCan} />
+                            <BsTrash/>
                         </button>
                     </div>
                 </div>
-                <label className="form__label" htmlFor="username">
-                    Username: <span className="nowrap">[3-20 letters]</span></label>
+                <label className="form_label" htmlFor="username">
+                    Lietotājvārds: <span className="nowrap">[3-20 burti]</span></label>
                 <input
-                    className={`form__input ${validUserClass}`}
+                    className={`form_input ${validUserClass}`}
                     id="username"
                     name="username"
                     type="text"
@@ -138,19 +137,20 @@ const EditUserForm = ({ user }) => {
                     onChange={onUsernameChanged}
                 />
 
-                <label className="form__label" htmlFor="password">
-                    Password: <span className="nowrap">[empty = no change]</span> <span className="nowrap">[4-12 chars incl. !@#$%]</span></label>
+
+                <label className="form_label" htmlFor="newpassword">
+                    Parole: <span className="nowrap"></span> <span className="nowrap">[4-12 burti vai !@#$%]</span></label>
                 <input
-                    className={`form__input ${validPwdClass}`}
-                    id="password"
-                    name="password"
-                    type="password"
+                    className={`form_input ${validPwdClass}`}
+                    id="newpassword"
+                    name="newpassword"
+                    type="newpassword"
                     value={password}
                     onChange={onPasswordChanged}
                 />
 
-                <label className="form__label form__checkbox-container" htmlFor="user-active">
-                    ACTIVE:
+                <label className="form_label flex" htmlFor="user-active">
+                    Lietotājs ir aktivizēts: &nbsp;
                     <input
                         className="form__checkbox"
                         id="user-active"
@@ -161,8 +161,9 @@ const EditUserForm = ({ user }) => {
                     />
                 </label>
 
-                <label className="form__label" htmlFor="roles">
-                    ASSIGNED ROLES:</label>
+
+                <label className="form_label" htmlFor="roles">
+                    Lietotāja piekļuve: &nbsp;{roles}</label>
                 <select
                     id="roles"
                     name="roles"
@@ -174,6 +175,7 @@ const EditUserForm = ({ user }) => {
                 >
                     {options}
                 </select>
+
 
             </form>
         </>

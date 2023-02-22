@@ -8,7 +8,7 @@ import {
     faRightFromBracket
 } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, Link, useLocation } from 'react-router-dom'
-import { useSendLogoutMutation } from '../features/auth/authApiSlice'
+import { useSendLogoutMutation } from '../pages/auth/authApiSlice'
 import useAuth from '../hooks/useAuth'
 import PulseLoader from 'react-spinners/PulseLoader'
 

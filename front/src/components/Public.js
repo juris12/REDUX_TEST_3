@@ -12,6 +12,7 @@ const Public = () => {
                     Dan D. Repairs<br />
                     555 Foo Drive<br />
                     Foo City, CA 12345<br />
+                    <Link to="/dash">Katalogs</Link><br/>
                     <a href="tel:+15555555555">(555) 555-5555</a>
                 </address>
                 <br />
