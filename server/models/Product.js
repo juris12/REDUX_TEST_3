@@ -25,7 +25,7 @@ const noteSchema = new mongoose.Schema(
         },
         minoder: {
             type: Number,
-            required: true
+            default: false
         },
         size: {
             hight: {
