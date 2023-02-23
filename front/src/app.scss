@@ -3,20 +3,136 @@
     flex-direction: row;
     align-items: center;
   }
-.kreisa{float: left;}
-.laba{float: right;}
 .center{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.width_100{
-  width: 100%;
-}
-.width_60{
-  width: 60%;
-}
 .m_auto{
   margin: auto;
+}
+button{
+  border: none;
+  &:hover{
+      cursor: pointer;
+    }
+}
+li{
+  list-style: none;
+}
+/*teksts*/
+.uper{text-transform: uppercase;}
+.lower{text-transform: capitalize;}
+
+.bold{font-weight: bold;}
+.italic{font-style: italic;}
+.normal{font-weight: normal;}
+
+.xliels{font-size: 3.5rem;}
+.liels{font-size: 2.5rem;}
+.mazs{font-size: 1rem;}
+.xmazs{font-size: 0.9rem;}
+.videjs{font-size: 1.5rem;}
+
+/*izmērs*/
+.width_20{width: 20%;}
+.width_25{width: 25%;}
+.width_30{width: 30%;}
+.width_33{width: 33.3%;}
+.width_45{width: 45%;}
+.width_50{width: 50%;}
+.width_40{width: 40%;}
+.width_60{width: 60%;}
+.width_66{width: 66.6%;}
+.width_65{width: 65%;}
+.width_70{width: 70%;}
+.width_75{width: 75%;}
+.width_80{width: 80%;}
+.width_90{width: 90%;}
+.width_100{width: 100%;}
+
+/*novietojums*/
+.flex_center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img_con{
+  height: auto;
+  object-fit: contain;
+}
+
+.kreisa{float: left;}
+.laba{float: right;}
+
+.margin_b{
+  padding-top: 200px;
+  padding-bottom: 200px;
+} 
+.margin_m{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.margin_s{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.margin_xs{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.margin_sb{margin: auto 12%;}
+.margin_sm{margin: auto 8%;}
+.margin_ss{margin: auto 5%;}
+.margin_auto{margin: 0p auto;}
+
+.hover_zoom{
+  transition: 0.3s;
+  transform: scale(1);
+  &:hover{
+      transform: scale(1.08);
+  }
+}
+
+
+@media screen and (max-width: /*780px*/1080px) {
+  .width_20,.width_25,.width_33,.width_30,.width_40,.width_45,.width_50,.width_65,.width_66,.width_70,.width_80,.width_90{
+      width: 90%;
+  }
+  .margin_b{
+      padding-top: 110px;
+      padding-bottom: 110px;
+  } 
+  .margin_m{
+      padding-top: 55px;
+      padding-bottom: 55px;
+  }
+  .margin_s{
+      padding-top: 30px;
+      padding-bottom: 30px;
+  }
+  .xliels{font-size: 2.5rem;}
+  .liels{font-size: 2rem;}
+}
+
+.error_page{
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  h1{
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+  }
+  a{
+      background-color: transparent;
+      padding: 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      &:hover{
+          background-color: rgba(148, 196, 196,0.5);
+      }
+  }
 }
   

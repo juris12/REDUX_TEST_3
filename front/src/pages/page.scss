@@ -5,7 +5,6 @@
     padding: 15px 30px 15px 30px;
 }
 .standart_table{
-    margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
     th, td {
@@ -16,6 +15,9 @@
     tr{
 
         transition: all .1s ease;
+        &:first-child{
+            background-color: rgb(243, 243, 243);
+        }
         &:hover{
             transition: all .1s ease;
             background-color: rgb(243, 243, 243);

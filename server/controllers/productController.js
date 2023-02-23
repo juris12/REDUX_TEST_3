@@ -1,5 +1,3 @@
-const Note = require('../models/Note')
-const User = require('../models/User')
 const Product = require('../models/Product')
 const Category = require('../models/Category')
 
@@ -37,58 +35,45 @@ const createNewProduct = async (req, res) => {
 
 
 const updateProduct = async (req, res) => {
-    const { id, user, title, text, completed } = req.body
-
-    // Confirm data
-    if (!id || !user || !title || !text || typeof completed !== 'boolean') {
-        return res.status(400).json({ message: 'All fields are required' })
+    const { id, quantity, title, price, minoder, description, disabled } = req.body
+    if ([id, quantity, title, price, minoder, disabled, description, typeof disabled !== 'boolean'].every(Boolean)) {
+        return res.status(400).json({ message: 'Jāizpilda visi lauki' })
+    }
+    const product = await Product.findById(id).exec()
+    if (!product) {
+        return res.status(400).json({ message: 'Prece nav atrasta' })
     }
 
-    // Confirm note exists to update
-    const note = await Note.findById(id).exec()
+    const duplicate = await Product.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
-    if (!note) {
-        return res.status(400).json({ message: 'Note not found' })
-    }
-
-    // Check for duplicate title
-    const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
-
-    // Allow renaming of the original note 
     if (duplicate && duplicate?._id.toString() !== id) {
-        return res.status(409).json({ message: 'Duplicate note title' })
+        return res.status(409).json({ message: 'Prece ar šādu nosaukumu jau eksistē' })
     }
 
-    note.user = user
-    note.title = title
-    note.text = text
-    note.completed = completed
+    product.price = price
+    product.title = title
+    product.description = description
+    product.minoder = minoder
+    product.quantity = quantity
+    product.disabled = disabled
 
-    const updatedNote = await note.save()
+    const updatedProduct = await product.save()
 
-    res.json(`'${updatedNote.title}' updated`)
+    res.json(`'${updatedProduct.title}' rediģēts`)
 }
 
 
 const deleteProduct = async (req, res) => {
     const { id } = req.body
-
-    // Confirm data
     if (!id) {
-        return res.status(400).json({ message: 'Note ID required' })
+        return res.status(400).json({ message: 'Ir vajadzīga id' })
     }
-
-    // Confirm note exists to delete 
-    const note = await Note.findById(id).exec()
-
-    if (!note) {
-        return res.status(400).json({ message: 'Note not found' })
+    const product = await Product.findById(id).exec()
+    if (!product) {
+        return res.status(400).json({ message: 'Prece nav atrasta' })
     }
-
-    const result = await note.deleteOne()
-
-    const reply = `Note '${result.title}' with ID ${result._id} deleted`
-
+    const result = await product.deleteOne()
+    const reply = `Prece '${result.title}' ar ID ${result._id} ir izdzēsta`
     res.json(reply)
 }
 
