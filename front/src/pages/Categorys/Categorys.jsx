@@ -7,7 +7,7 @@ const IndividualCaetegory = ({catergory}) => {
   const clickHandler = () => navigate(`/dash/categorys/${catergory.id}`)
   return(
    <>
-    <div className='categorija_indiv_outer'>
+    <div className='categorija_indiv_outer' key={catergory.id}>
       <div className='categorija_indiv_prime' onClick={clickHandler}>
         <div className={`categorija_indiv`}>
           <span>{catergory.title}</span>
@@ -44,7 +44,7 @@ const Categorys = () => {
     }
 
     if(isSuccess){
-      const { ids, entities } = categorys
+      const {  entities } = categorys
       let primecat = []
       Object.keys(entities).forEach(val => {
         if(entities[val].parentCategory === undefined){

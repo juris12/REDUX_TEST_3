@@ -35,7 +35,7 @@ export const categorysApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Category', id: 'LIST' }]
             }
         }),
-        addNewNote: builder.mutation({
+        addNewCategory: builder.mutation({
             query: initialNote => ({
                 url: '/category',
                 method: 'POST',
@@ -47,7 +47,7 @@ export const categorysApiSlice = apiSlice.injectEndpoints({
                 { type: 'Category', id: "LIST" }
             ]
         }),
-        updateNote: builder.mutation({
+        updateCategory: builder.mutation({
             query: initialNote => ({
                 url: '/category',
                 method: 'PATCH',
@@ -59,7 +59,7 @@ export const categorysApiSlice = apiSlice.injectEndpoints({
                 { type: 'Category', id: arg.id }
             ]
         }),
-        deleteNote: builder.mutation({
+        deleteCategory: builder.mutation({
             query: ({ id }) => ({
                 url: `/category`,
                 method: 'DELETE',
@@ -74,9 +74,9 @@ export const categorysApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetCategorysQuery,
-    useAddNewNoteMutation,
-    useUpdateNoteMutation,
-    useDeleteNoteMutation,
+    useAddNewCategoryMutation,
+    useUpdateCategoryMutation,
+    useDeleteCategoryMutation,
 } = categorysApiSlice
 
 // returns the query result object

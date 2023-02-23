@@ -4,10 +4,14 @@ const Category = require('../models/Category')
 
 const getAllCategorys = async (req, res) => {
     const category = await Category.find().lean()
+    const notesWitParentName = await Promise.all(category.map(async (note) => {
+        const user = await Category.findById(note.parentCategory).lean().exec()
+        return { ...note, parent_name: user?.title && user?.title }
+    }))
     if (!category?.length) {
         return res.status(400).json({ message: 'Nav atrasta neviena kategorija' })
     }
-    res.json(category)
+    res.json(notesWitParentName)
 }
 
 
