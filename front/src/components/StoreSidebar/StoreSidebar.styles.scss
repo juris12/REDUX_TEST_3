@@ -1,0 +1,64 @@
+.stor_indi_cat{
+    color: white;
+    background-color: #304a1e;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    a{
+        width: 100%;
+        padding: 10px;
+        color: white;
+        &:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+    &:hover{
+        background-color:  #576f44;
+    }
+}
+.stor_cat{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 5px 0px 5px 5px;
+    background-color: #304a1e;
+    margin: 20px 20px 20px 0px;
+}
+.stor_indi_cat:hover .stor_indi_right{
+    display: flex;
+}
+.stor_indi_right{
+    &:hover{
+        cursor: default;
+    }
+    background-color:  #dedede;
+    position: absolute;
+    width: 1345px;
+    display: none;
+    flex-wrap: wrap;
+    padding: 10px;
+    min-height: 500px;
+    right: -1345px;
+    h3 a{
+        color: #304a1e;
+        margin: 5px 0px;
+        &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+.stor_indi_right_sub{
+    width: 600px;
+    span a{
+        margin: 20px 0px;
+        color: rgb(0, 0, 0);
+        &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+    margin: 10px;
+}
