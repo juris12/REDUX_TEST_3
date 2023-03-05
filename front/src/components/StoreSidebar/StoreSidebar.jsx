@@ -1,21 +1,21 @@
 import './StoreSidebar.styles.scss'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useGetCategorysQuery } from "../../pages/Categorys/CategoryApiSlice"
 import { IoIosArrowForward } from 'react-icons/io';
 
 const IndividualCaetegory = ({cat,i,l}) => {
     
     return(
-        <div className='stor_indi_cat'>
-            <Link to="/dash">{cat.title}</Link>
+        <div className='stor_indi_cat' key={cat.id}>
+            <Link to={`/${cat.id}`}>{cat.title}</Link>
             <IoIosArrowForward/>
             {cat.child.length > 1 &&
             <div className='stor_indi_right' style={i<=13?{ top: `${-5+(i*-37)}px`}:{bottom: `${0}px`}}>
                 {cat.child.map((val) => (
                     <div className='stor_indi_right_sub'>
-                    <h3><Link to="/dash">{val.title}</Link></h3>
+                    <h3><Link to={`/${val.id}`}>{val.title}</Link></h3>
                     {val.child.map((vall) => (
-                        <span><Link to="/dash">{vall.title}</Link></span>
+                        <span><Link to={`/${vall.id}`}>{vall.title}</Link></span>
                     ))}</div>
                 ))}
             </div>
@@ -30,11 +30,7 @@ const StoreSidebar = () => {
         isSuccess,
         isError,
         error
-    } = useGetCategorysQuery('notesList', {
-        pollingInterval: 15000,
-        refetchOnFocus: true,
-        refetchOnMountOrArgChange: true
-    })
+    } = useGetCategorysQuery('notesList')
     let content
 
     if (isLoading) content = <h1>Loading... </h1>
@@ -82,13 +78,7 @@ const StoreSidebar = () => {
     let test = primecat.concat(primecat.concat(primecat.concat(primecat.concat(primecat))))
     content = test.map((val,i) => <IndividualCaetegory cat={val} l={test.length}i={i}/>)
     }
-    return (
-    <>
-    <div className='stor_cat'>
-        {content} 
-    </div>
-    </>
-    )
+    return content
 }
 
 export default StoreSidebar

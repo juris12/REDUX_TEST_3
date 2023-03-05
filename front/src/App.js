@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import './app.scss'
 import {DashLayout, StoreWrapper} from './Wrapper'
 import { ROLES } from './config/roles'
-import { Login, Home, Catalog,LandingPage , EditProduct, Categorys, EditCategory, PersistLogin, Prefetch, EditUser, RequireAuth, UsersList, NewUserForm, NotesList, EditNote, NewNote } from './pages'
+import { Login, Home, StoreCatalog, Catalog,LandingPage,StoreCategory , EditProduct, Categorys, EditCategory, PersistLogin, Prefetch, EditUser, RequireAuth, UsersList, NewUserForm, NotesList, EditNote, NewNote } from './pages'
 import useTitle from './hooks/useTitle';
 function App() {
   useTitle('Dan D. Repairs')
@@ -12,7 +12,10 @@ function App() {
       <Route path="/" element={<StoreWrapper />}>
         {/* public routes */}
         <Route index element={<LandingPage />} />
-        
+        <Route path=":id">
+            <Route index element={<StoreCategory/>}/>
+            <Route path=":haschild" element={<StoreCatalog/>}/>
+        </Route>
         <Route path="login" element={<Login />} />
 
         

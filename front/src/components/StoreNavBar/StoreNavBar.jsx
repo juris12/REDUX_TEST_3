@@ -28,7 +28,7 @@ const StoreNavBar = () => {
               <button className='store_mid_menu'>
                 <GiHamburgerMenu/>
               </button>
-              <NavLink to="/dash" className='navbar_logo'>
+              <NavLink to="/" className='navbar_logo'>
                   {/* <img src="https://picsum.photodds/200" alt="Store101" /> */}
                   Store101
               </NavLink>

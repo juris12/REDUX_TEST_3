@@ -5,7 +5,7 @@ const StoreWrapper = () => {
     return (
         <>
         <StoreNavBar/>
-        <div style={{paddingTop:"128px",margin:"auto",maxWidth:"1600px"}}>
+        <div style={{paddingTop:"128px",margin:"auto",maxWidth:"1660px"}}>
             <Outlet />
         </div>
         </>
